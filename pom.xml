@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tansun.ider</groupId>
+		<artifactId>com.tansun.ider.creditsystem</artifactId>
+		<version>1.6.0</version>
+	</parent>
+	<artifactId>ider-non-finance</artifactId>
+	<name>ider-non-finance</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.sun</groupId>
+				<artifactId>tools</artifactId>
+				<version>1.8</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<profiles>
+		<profile>
+			<id>stg1</id>
+			<properties>
+				<profileActive>stg1</profileActive>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<profileActive>prod</profileActive>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profileActive>dev</profileActive>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profileActive>test</profileActive>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+<!-- 		<finalName>ider-non-finance-${env}-1.0.0.${buildNumber}</finalName> -->
+		<finalName>${project.artifactId}</finalName>
+		<defaultGoal>compile</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.tansun.ider</groupId>
+			<artifactId>ider-model-issue</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- <dependency> <groupId>com.tansun.ider</groupId> <artifactId>action-x5380</artifactId> 
+			<version>1.6.0</version> </dependency> -->
+		<!-- <dependency>
+			<groupId>com.tansun.ider</groupId>
+			<artifactId>action-x5620</artifactId>
+			<version>1.6.0</version>
+		</dependency> -->
+		<!--<dependency> <groupId>com.tansun.ider</groupId> <artifactId>action-x8340</artifactId> 
+			<version>1.6.0</version> </dependency> -->
+		<dependency>
+			<groupId>com.tansun.ider</groupId>
+			<artifactId>action-x8125</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+	</dependencies>
+
+</project>

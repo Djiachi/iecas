@@ -1,0 +1,60 @@
+#set ($_data=$_data)
+#set ($jarPath = $_data.get("jarPath"))
+#set ($driverClass = $_data.get("driverClass"))
+#set ($url = $_data.get("connectionURL"))
+#set ($userId = $_data.get("userId"))
+#set ($password = $_data.get("password"))
+#set ($project = $_data.get("projectName"))
+#set ($srcPackage = $_data.get("srcPackage"))
+#set ($dataBaseType = $_data.get("DataBaseType"))
+#set ($lockType = $_data.get("lockType"))
+#set ($sqlBuilder = $_data.get("sqlBuilder"))
+#set ($tables = $_data.get("tables"))
+#set($index = 0)
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+	PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+	"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="${jarPath}" />
+	<context id="${dataBaseType}Tables" targetRuntime="MyBatis3.3">
+		<!--
+		<property name="NullTypeHandler" value="com.company.framework.dao.EmptyStringDelNull" />
+		<property name="UpdateIgnoreJdbcType" value="timestamp" />
+		<property name="InsertIgnoreJdbcType" value="timestamp" />
+		-->
+		<property name="lockType" value="${lockType}" />
+		<property name="sqlBuilder" value="${sqlBuilder}" />
+				
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${url}" userId="${userId}" password="${password}"></jdbcConnection>
+		
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator targetPackage="${srcPackage}.entity" targetProject="${project}">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="${srcPackage}.mapper" targetProject="${project}">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<javaClientGenerator type="MAPPER-SPRING" targetPackage="${srcPackage}" targetProject="${project}">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+#foreach( $rowtx in $tables )
+#set ($columnArray = $rowtx.split("\|\^\|"))
+##foreach( $ele in $columnArray )
+##	${ele}
+##end
+		<table tableName="$columnArray.get(0)">
+			<property name="immutable" value="true"/>
+#if($columnArray.get(1) == 'true' || $columnArray.get(1) == 'TRUE')
+			<property name="type" value="view"/>
+#end
+		</table>
+#end
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.ider.dao.nonfinance.mapper.DisputeAccountMapper" >
+    <resultMap id="BaseResultMap" type="com.tansun.ider.model.vo.X5340VO" >
+        <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+        <result column="currency_code" property="currencyCode" jdbcType="CHAR" />
+        <result column="old_global_serial_numbr" property="oldGlobalSerialNumbr" jdbcType="VARCHAR" />
+        <result column="external_identification_no" property="externalIdentificationNo" jdbcType="VARCHAR" />
+        <result column="dispute_amount" property="disputeAmount" jdbcType="DECIMAL" />
+        <result column="blance_amount" property="blanceAmount" jdbcType="DECIMAL" />
+        <result column="overpay_freeze_amount" property="overpayFreezeAmount" jdbcType="DECIMAL" />
+        <result column="overpay_freeze_status" property="overpayFreezeStatus" jdbcType="CHAR" />
+        <result column="free_date" property="freeDate" jdbcType="VARCHAR" />
+        <result column="interest_expiration_date" property="interestExpirationDate" jdbcType="VARCHAR" />
+        <result column="interest_amt" property="interestAmt" jdbcType="DECIMAL" />
+        <result column="amt_occ_flag" property="amtOccFlag" jdbcType="CHAR" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="VARCHAR" />
+        <result column="time_stamp" property="timeStamp" jdbcType="TIMESTAMP" />
+        <result column="version" property="version" jdbcType="INTEGER" />
+        <result column="business_program_no" property="businessProgramNo" jdbcType="VARCHAR" />
+        <result column="product_object_code" property="productObjectCode" jdbcType="VARCHAR" />
+        <result column="business_type_code" property="businessTypeCode" jdbcType="VARCHAR" />
+        <result column="customer_no" property="customerNo" jdbcType="VARCHAR" />
+        <result column="organ_no" property="organNo" jdbcType="VARCHAR" />
+        <result column="operation_mode" property="operationMode" jdbcType="VARCHAR" />
+        <result column="account_organ_form" property="accountOrganForm" jdbcType="CHAR" />
+        <result column="business_debit_credit_code" property="businessDebitCreditCode" jdbcType="CHAR" />
+        <result column="cycle_mode_flag" property="cycleModeFlag" jdbcType="CHAR" />
+        <result column="status_code" property="statusCode" jdbcType="CHAR" />
+        <result column="status_update_date" property="statusUpdateDate" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+        <result column="closed_date" property="closedDate" jdbcType="VARCHAR" />
+        <result column="interest_process_date" property="interestProcessDate" jdbcType="VARCHAR" />
+        <result column="payment_due_date" property="paymentDueDate" jdbcType="VARCHAR" />
+        <result column="delinquency_date" property="delinquencyDate" jdbcType="VARCHAR" />
+        <result column="accounting_status_code" property="accountingStatusCode" jdbcType="VARCHAR" />
+        <result column="accounting_status_date" property="accountingStatusDate" jdbcType="VARCHAR" />
+        <result column="prev_accounting_status_code" property="prevAccountingStatusCode" jdbcType="VARCHAR" />
+        <result column="prev_accounting_status_date" property="prevAccountingStatusDate" jdbcType="VARCHAR" />
+        <result column="direct_debit_type" property="directDebitType" jdbcType="CHAR" />
+        <result column="cycle_due" property="cycleDue" jdbcType="INTEGER" />
+        <result column="prev_cycle_due" property="prevCycleDue" jdbcType="INTEGER" />
+        <result column="abs_status" property="absStatus" jdbcType="CHAR" />
+        <result column="current_cycle_number" property="currentCycleNumber" jdbcType="INTEGER" />
+        <result column="grace_date" property="graceDate" jdbcType="VARCHAR" />
+    </resultMap> 
+    
+      <sql id="SqlBuilder_Paging_Tail" >
+        <if test="pageSize > 0" >
+            <if test="indexNo > 0" >
+                limit #{indexNo} , #{pageSize}
+            </if>
+            <if test="indexNo == 0" >
+                limit #{pageSize}
+            </if>
+        </if>
+    </sql>
+        <select id="selectDisputeAccount" resultMap="BaseResultMap" parameterType="com.tansun.ider.model.bo.X5340BO">
+						SELECT
+				d.*,
+				a.* 
+			FROM
+				core_dispute_account d
+				INNER JOIN core_account a ON a.account_id = d.account_id and a.currency_code = d.currency_code 
+			WHERE 1=1
+			<if test="customerNo!=null and customerNo!=''">
+		   		      AND a.customer_no = #{customerNo}
+		    </if>
+		    <if test="oldGlobalSerialNumbr!=null and oldGlobalSerialNumbr!=''">
+					 AND d.old_global_serial_numbr = #{oldGlobalSerialNumbr} 
+			</if>
+			  <if test="externalIdentificationNo!=null and externalIdentificationNo!=''">
+					 AND d.external_identification_no = #{externalIdentificationNo} 
+			</if>
+			 <if test="currencyCode!=null and currencyCode!=''">
+		   		      and a.currency_code=#{currencyCode}
+		   		   </if>
+			 ORDER  BY d.gmt_create
+			 <include refid="SqlBuilder_Paging_Tail" />
+    </select>
+    <select id="selectDisputeAccountConut" parameterType="com.tansun.ider.model.bo.X5340BO" resultType="java.lang.Integer" >
+       SELECT
+				count(*)
+			FROM
+				core_dispute_account d
+				INNER JOIN core_account a ON a.account_id = d.account_id and a.currency_code = d.currency_code 
+			WHERE 1=1
+			<if test="customerNo!=null and customerNo!=''">
+		   		      AND a.customer_no = #{customerNo}
+		    </if>
+		    <if test="oldGlobalSerialNumbr!=null and oldGlobalSerialNumbr!=''">
+					 AND d.old_global_serial_numbr = #{oldGlobalSerialNumbr} 
+			</if>
+			  <if test="externalIdentificationNo!=null and externalIdentificationNo!=''">
+					 AND d.external_identification_no = #{externalIdentificationNo} 
+			</if>
+			 <if test="currencyCode!=null and currencyCode!=''">
+		   		      and a.currency_code=#{currencyCode}
+		   		   </if>
+    </select>
+</mapper>

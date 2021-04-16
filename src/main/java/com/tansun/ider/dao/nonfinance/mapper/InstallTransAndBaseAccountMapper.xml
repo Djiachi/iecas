@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.ider.dao.nonfinance.mapper.InstallTransAndBaseAccountMapper" >
+    <resultMap id="BaseResultMap" type="com.tansun.ider.model.vo.X5630VO" >
+        <result column='id' property='id' jdbcType='VARCHAR' />
+        <result column='account_id' property='accountId' jdbcType='VARCHAR' />
+        <result column='currency_code' property='currencyCode' jdbcType='CHAR' />
+        <result column='customer_no' property='customerNo' jdbcType='VARCHAR' />
+        <result column='external_identification_no' property='externalIdentificationNo' jdbcType='VARCHAR' />
+        <result column='loan_type' property='loanType' jdbcType='VARCHAR' />
+        <result column='loan_num' property='loanNum' jdbcType='VARCHAR' />
+        <result column='loan_term' property='loanTerm' jdbcType='INTEGER' />
+        <result column='term_unit' property='termUnit' jdbcType='CHAR' />
+        <result column='loan_start_date' property='loanStartDate' jdbcType='VARCHAR' />
+        <result column='loan_end_date' property='loanEndDate' jdbcType='VARCHAR' />
+        <result column='loan_amount' property='loanAmount' jdbcType='DECIMAL' />
+        <result column='repayed_periods' property='repayedPeriods' jdbcType='INTEGER' />
+        <result column='rate_adjust_date' property='rateAdjustDate' jdbcType='VARCHAR' />
+        <result column='pay_date' property='payDate' jdbcType='VARCHAR' />
+        <result column='loan_rate' property='loanRate' jdbcType='DECIMAL' />
+        <result column='actual_end_date' property='actualEndDate' jdbcType='VARCHAR' />
+        <result column='next_throw_date' property='nextThrowDate' jdbcType='VARCHAR' />
+        <result column='is_make_plan' property='isMakePlan' jdbcType='CHAR' />
+        <result column='make_plan_period' property='makePlanPeriod' jdbcType='INTEGER' />
+        <result column='first_cycle_no' property='firstCycleNo' jdbcType='INTEGER' />
+        <result column='start_int_date' property='startIntDate' jdbcType='VARCHAR' />
+        <result column='fee_rate' property='feeRate' jdbcType='DECIMAL' />
+        <result column='throwed_period' property='throwedPeriod' jdbcType='INTEGER' />
+        <result column='remain_period' property='remainPeriod' jdbcType='INTEGER' />
+        <result column='remain_principal_amount' property='remainPrincipalAmount' jdbcType='DECIMAL' />
+        <result column='fee_amount' property='feeAmount' jdbcType='DECIMAL' />
+        <result column='remain_fee_amount' property='remainFeeAmount' jdbcType='DECIMAL' />
+        <result column='next_int_adjust_date' property='nextIntAdjustDate' jdbcType='VARCHAR' />
+        <result column='effect_int_rate' property='effectIntRate' jdbcType='DECIMAL' />
+        <result column='gmt_create' property='gmtCreate' jdbcType='VARCHAR' />
+        <result column='time_stamp' property='timeStamp' jdbcType='TIMESTAMP' />
+        <result column='version' property='version' jdbcType='INTEGER' />
+        <result column='repay_mode' property='repayMode' jdbcType='VARCHAR' />
+        <result column='repayment_date_type' property='repaymentDateType' jdbcType='VARCHAR' />
+        <result column='free_days' property='freeDays' jdbcType='INTEGER' />
+        <result column='repay_principal_cycle' property='repayPrincipalCycle' jdbcType='INTEGER' />
+        <result column='repay_principal_unit' property='repayPrincipalUnit' jdbcType='VARCHAR' />
+        <result column='repay_day' property='repayDay' jdbcType='INTEGER' />
+        <result column='penalty_up' property='penaltyUp' jdbcType='DECIMAL' />
+        <result column='penalty_inter_rate' property='penaltyInterRate' jdbcType='DECIMAL' />
+        <result column='inter_amount' property='interAmount' jdbcType='DECIMAL' />
+        <result column='remain_inter_amount' property='remainInterAmount' jdbcType='DECIMAL' />
+        <result column='direct_debit_bank_no' property='directDebitBankNo' jdbcType='VARCHAR' />
+        <result column='direct_debit_account_no' property='directDebitAccountNo' jdbcType='VARCHAR' />
+        <result column='status' property='status' jdbcType='CHAR' />
+        <result column='int_penalty_inter_rate' property='intPenaltyInterRate' jdbcType='DECIMAL' />
+        <result column='old_global_serial_numbr' property='oldGlobalSerialNumbr' jdbcType='VARCHAR' />
+        <result column='cal_installment_period' property='calInstallmentPeriod' jdbcType='INTEGER' />
+        <result column='prepaid_amount' property='prepaidAmount' jdbcType='DECIMAL' />
+        <result column='pay_status' property='payStatus' jdbcType='CHAR' />
+        <result column='payment_plan' property='paymentPlan' jdbcType='CHAR' />
+        <result column='current_period' property='currentPeriod' jdbcType='INTEGER' />
+        <result column='loan_fixed_fee' property='loanFixedFee' jdbcType='DECIMAL' />
+        <result column='loan_first_term_fee' property='loanFirstTermFee' jdbcType='DECIMAL' />
+        <result column='loan_final_term_fee' property='loanFinalTermFee' jdbcType='DECIMAL' />
+        <result column='loan_fixed_principal' property='loanFixedPrincipal' jdbcType='DECIMAL' />
+        <result column='loan_first_term_principal' property='loanFirstTermPrincipal' jdbcType='DECIMAL' />
+        <result column='loan_final_term_principal' property='loanFinalTermPrincipal' jdbcType='DECIMAL' />
+        <result column='loan_principal_due' property='loanPrincipalDue' jdbcType='DECIMAL' />
+        <result column='loan_principal_undue' property='loanPrincipalUndue' jdbcType='DECIMAL' />
+        <result column='loan_fee_due' property='loanFeeDue' jdbcType='DECIMAL' />
+        <result column='loan_fee_undue' property='loanFeeUndue' jdbcType='DECIMAL' />
+        <result column='next_make_plan_date' property='nextMakePlanDate' jdbcType='VARCHAR' />
+        <result column='fee_start_period' property='feeStartPeriod' jdbcType='INTEGER' />
+        <result column='fee_collect_type' property='feeCollectType' jdbcType='CHAR' />
+        <result column='fee_item_no' property='feeItemNo' jdbcType='VARCHAR' />
+        <result column='trust_num' property='trustNum' jdbcType='VARCHAR' />
+        <result column='trust_id' property='trustId' jdbcType='VARCHAR' />
+
+        <result column='business_program_no' property='businessProgramNo' jdbcType='VARCHAR' />
+        <result column='product_object_code' property='productObjectCode' jdbcType='VARCHAR' />
+        <result column='business_type_code' property='businessTypeCode' jdbcType='VARCHAR' />
+        <result column='organ_no' property='organNo' jdbcType='VARCHAR' />
+        <result column='operation_mode' property='operationMode' jdbcType='VARCHAR' />
+        <result column='account_organ_form' property='accountOrganForm' jdbcType='CHAR' />
+        <result column='business_debit_credit_code' property='businessDebitCreditCode' jdbcType='CHAR' />
+        <result column='cycle_mode_flag' property='cycleModeFlag' jdbcType='CHAR' />
+        <result column='status_code' property='statusCode' jdbcType='CHAR' />
+        <result column='status_update_date' property='statusUpdateDate' jdbcType='VARCHAR' />
+        <result column='create_date' property='createDate' jdbcType='VARCHAR' />
+        <result column='closed_date' property='closedDate' jdbcType='VARCHAR' />
+        <result column='interest_process_date' property='interestProcessDate' jdbcType='VARCHAR' />
+        <result column='payment_due_date' property='paymentDueDate' jdbcType='VARCHAR' />
+        <result column='delinquency_date' property='delinquencyDate' jdbcType='VARCHAR' />
+        <result column='accounting_status_code' property='accountingStatusCode' jdbcType='VARCHAR' />
+        <result column='accounting_status_date' property='accountingStatusDate' jdbcType='VARCHAR' />
+        <result column='prev_accounting_status_code' property='prevAccountingStatusCode' jdbcType='VARCHAR' />
+        <result column='prev_accounting_status_date' property='prevAccountingStatusDate' jdbcType='VARCHAR' />
+        <result column='cycle_due' property='cycleDue' jdbcType='INTEGER' />
+        <result column='prev_cycle_due' property='prevCycleDue' jdbcType='INTEGER' />
+        <result column='abs_status' property='absStatus' jdbcType='CHAR' />
+        <result column='capital_type' property='capitalType' jdbcType='VARCHAR' />
+        <result column='capital_stage' property='capitalStage' jdbcType='VARCHAR' />
+        <result column='capital_organization_code' property='capitalOrganizationCode' jdbcType='VARCHAR' />
+        <result column='capital_organization_name' property='capitalOrganizationName' jdbcType='VARCHAR' />
+        <result column='grace_date' property='graceDate' jdbcType='VARCHAR' />
+        <result column='new_balance' property='newBalance' jdbcType='DECIMAL' />
+        <result column='trans_identifi_no' property='transIdentifiNo' jdbcType='CHAR' />
+        <result column='fund_num' property='fundNum' jdbcType='VARCHAR' />
+        <result column='abs_plan_id' property='absPlanId' jdbcType='VARCHAR' />
+        <result column='global_trans_serial_no' property='globalTransSerialNo' jdbcType='VARCHAR' />
+        <result column='prev_fund_num' property='prevFundNum' jdbcType='VARCHAR' />
+        <result column='sub_acc_identify' property='subAccIdentify' jdbcType='CHAR' />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.tansun.ider.dao.issue.entity.CoreInstallmentTransAcct" extends="BaseResultMap" />
+    <sql id='Base_Column_List' >
+        i.id, i.account_id, i.currency_code, i.customer_no, i.external_identification_no, i.loan_type,i.loan_num, i.loan_term, i.term_unit, i.loan_start_date, i.loan_end_date, i.loan_amount, i.repayed_periods, i.
+        rate_adjust_date, i.pay_date, i.loan_rate, i.actual_end_date, i.next_throw_date, i.is_make_plan, i.
+        make_plan_period, i.first_cycle_no, i.start_int_date, i.fee_rate, i.throwed_period, i.remain_period, i.
+        remain_principal_amount, i.fee_amount, i.remain_fee_amount, i.next_int_adjust_date, i.effect_int_rate, i.
+        gmt_create, i.time_stamp, i.version, i.repay_mode, i.repayment_date_type, i.free_days, i.repay_principal_cycle, i.
+        repay_principal_unit, i.repay_day, i.penalty_up, i.penalty_inter_rate, i.inter_amount, i.remain_inter_amount, i.
+        direct_debit_bank_no, i.direct_debit_account_no, i.status, i.int_penalty_inter_rate, i.old_global_serial_numbr, i.
+        cal_installment_period, i.prepaid_amount, i.pay_status, i.payment_plan, i.current_period, i.
+        loan_fixed_fee, i.loan_first_term_fee, i.loan_final_term_fee, i.loan_fixed_principal, i.loan_first_term_principal, i.
+        loan_final_term_principal, i.loan_principal_due, i.loan_principal_undue, i.loan_fee_due, i.
+        loan_fee_undue, i.next_make_plan_date, i.fee_start_period, i.fee_collect_type, i.fee_item_no,
+        i.trust_num, i.trust_id,a.business_program_no, a.product_object_code, a.business_type_code, a.
+        organ_no, a.operation_mode, a.account_organ_form, a.business_debit_credit_code, a.cycle_mode_flag, a.status_code, a.status_update_date, a.create_date, a.closed_date, a.interest_process_date, a.
+        payment_due_date, a.delinquency_date, a.accounting_status_code, a.accounting_status_date, a.
+        prev_accounting_status_code, a.prev_accounting_status_date, a.cycle_due, a.prev_cycle_due, a.
+        abs_status, a.capital_type, a.capital_stage, a.capital_organization_code, a.capital_organization_name, a.
+        grace_date, a.new_balance,trans_identifi_no, a.fund_num, a.
+        global_trans_serial_no, a.prev_fund_num, a.sub_acc_identify, a.abs_plan_id
+    </sql>
+    <sql id="Blob_Column_List" >
+        <include refid="Base_Column_List" />
+    </sql>
+    <sql id="SqlBuilder_Where_Case" >
+        <if test="customerNo!=null and customerNo!=''">
+            AND a.customer_no = #{customerNo}
+        </if>
+        <if test="loanType!=null and loanType!=''">
+            AND i.loan_type = #{loanType}
+        </if>
+        <if test="externalIdentificationNo!=null and externalIdentificationNo!=''">
+            AND i.external_identification_no = #{externalIdentificationNo}
+        </if>
+        <if test="businessTypeCode!=null and businessTypeCode!=''">
+            AND a.business_type_code = #{businessTypeCode}
+        </if>
+        <if test="businessProgramNo!=null and businessProgramNo!=''">
+            AND a.business_program_no=#{businessProgramNo}
+        </if>
+        <if test="productObjectCode!=null and productObjectCode!=''">
+            AND a.product_object_code=#{productObjectCode}
+        </if>
+    </sql>
+
+    <sql id="SqlBuilder_Where_Case_ForList" >
+        <if test="externalIdentificationNos!=null">
+            and i.external_identification_no in
+            <foreach collection="externalIdentificationNos" item="externalIdentificationNo" index="index" separator="," open="(" close=")">
+                #{externalIdentificationNos[${index}]}
+            </foreach>
+        </if>
+        <if test="oldGlobalSerialNumbr!=null and oldGlobalSerialNumbr!=''">
+            AND i.old_global_serial_numbr=#{oldGlobalSerialNumbr}
+        </if>
+        <if test="loanStartDate!=null and loanStartDate!=''">
+            AND i.loan_start_date <![CDATA[ >= ]]> #{loanStartDate}
+        </if>
+        <if test="loanEndDate!=null and loanEndDate!=''">
+            AND i.loan_end_date <![CDATA[ <= ]]> #{loanEndDate}
+        </if>
+    </sql>
+    <select id="selectCoreInstallmentTransAccts" resultMap="BaseResultMap" parameterType="com.tansun.ider.model.InstallAccountBean" >
+        select
+        <include refid="Base_Column_List" />
+        from core_installment_trans_acct i  inner join core_account a on a.account_id = i.account_id and i.currency_code = a.currency_code
+        WHERE 1=1
+        <include refid="SqlBuilder_Where_Case" />
+        order by i.pay_date,gmt_create
+        <if test="pageSize > 0" >
+            <if test="indexNo > 0" >
+                limit #{indexNo} , #{pageSize}
+            </if>
+            <if test="indexNo == 0" >
+                limit #{pageSize}
+            </if>
+        </if>
+    </select>
+    <select id="countBySqlBuilder" parameterType="com.tansun.ider.model.InstallAccountBean" resultType="java.lang.Integer" >
+        select count(*) from core_installment_trans_acct i  inner join core_account a on a.account_id = i.account_id and i.currency_code = a.currency_code
+        WHERE 1=1
+        <include refid="SqlBuilder_Where_Case" />
+    </select>
+
+    <select id="selectCoreInstallmentTransAcctsForList" resultMap="BaseResultMap" parameterType="com.tansun.ider.model.InstallAccountBean" >
+        select
+        <include refid="Base_Column_List" />
+        from core_installment_trans_acct i  inner join core_account a on a.account_id = i.account_id and i.currency_code = a.currency_code
+        WHERE 1=1 and  (a.sub_acc_identify = 'P' or a.sub_acc_identify = 'S')
+        <include refid="SqlBuilder_Where_Case_ForList" />
+        order by i.account_id
+        <if test="pageSize > 0" >
+            <if test="indexNo > 0" >
+                limit #{indexNo} , #{pageSize}
+            </if>
+            <if test="indexNo == 0" >
+                limit #{pageSize}
+            </if>
+        </if>
+    </select>
+    <select id="countBySqlBuilderForList" parameterType="com.tansun.ider.model.InstallAccountBean" resultType="java.lang.Integer" >
+        select count(*) from core_installment_trans_acct i  inner join core_account a on a.account_id = i.account_id and i.currency_code = a.currency_code
+        WHERE 1=1 and  (a.sub_acc_identify = 'P' or a.sub_acc_identify = 'S')
+        <include refid="SqlBuilder_Where_Case_ForList" />
+    </select>
+    <select id="countBySqlBuilderForChildList" parameterType="com.tansun.ider.model.InstallAccountBean" resultType="java.lang.Integer" >
+        select count(*) from  core_account a
+        WHERE 1=1 and  a.sub_acc_identify  <![CDATA[ <> ]]> 'P' and a.sub_acc_identify  <![CDATA[ <> ]]> 'S' and a.global_trans_serial_no = #{globalTransSerialNo};
+    </select>
+    <select id="selectInstallTransAcctsForChildList" resultMap="BaseResultMap" parameterType="com.tansun.ider.model.InstallAccountBean" >
+        select
+        <include refid="Base_Column_List" />
+        from core_installment_trans_acct i  inner join core_account a on a.account_id = i.account_id and i.currency_code = a.currency_code
+        WHERE 1=1 and a.global_trans_serial_no = #{globalTransSerialNo} and  a.sub_acc_identify
+        <![CDATA[ <> ]]> 'P' and a.sub_acc_identify
+        <![CDATA[ <> ]]> 'S' 
+        order by i.account_id
+        <if test="pageSize > 0" >
+            <if test="indexNo > 0" >
+                limit #{indexNo} , #{pageSize}
+            </if>
+            <if test="indexNo == 0" >
+                limit #{pageSize}
+            </if>
+        </if>
+    </select>
+
+
+    <select id="countBySqlBuilderForNotQuotaChildList" parameterType="com.tansun.ider.model.InstallAccountBean" resultType="java.lang.Integer" >
+        select count(*) from  core_account a
+        WHERE 1=1  and a.global_trans_serial_no = #{globalTransSerialNo} and  a.sub_acc_identify  <![CDATA[ <> ]]> 'P' and a.sub_acc_identify  <![CDATA[ <> ]]> 'S'
+          and  a.sub_acc_identify <![CDATA[ <> ]]> 'Q';
+    </select>
+    <select id="selectInstallTransAcctsForNotQuotaChildList" resultMap="BaseResultMap" parameterType="com.tansun.ider.model.InstallAccountBean" >
+        select
+        <include refid="Base_Column_List" />
+        from core_installment_trans_acct i  inner join core_account a on a.account_id = i.account_id and i.currency_code = a.currency_code
+        WHERE 1=1 and a.global_trans_serial_no = #{globalTransSerialNo} and  a.sub_acc_identify
+        <![CDATA[ <> ]]> 'P' and  a.sub_acc_identify
+        <![CDATA[ <> ]]> 'S'
+        and  a.sub_acc_identify <![CDATA[ <> ]]> 'Q' 
+        
+        order by i.account_id
+        <if test="pageSize > 0" >
+            <if test="indexNo > 0" >
+                limit #{indexNo} , #{pageSize}
+            </if>
+            <if test="indexNo == 0" >
+                limit #{pageSize}
+            </if>
+        </if>
+    </select>
+</mapper>

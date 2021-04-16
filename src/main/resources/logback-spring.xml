@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+	<conversionRule conversionWord="anm"
+		converterClass="com.tansun.framework.pattern.AppNameConvert" />
+	<conversionRule conversionWord="rno"
+		converterClass="com.tansun.framework.pattern.RequestNoConvert" />
+	<conversionRule conversionWord="rip"
+		converterClass="com.tansun.framework.pattern.RemoteIpConvert" />
+	<conversionRule conversionWord="spt"
+		converterClass="com.tansun.framework.pattern.ServerPortConvert" />
+
+	<springProperty scope="context" name="springAppName"
+		source="spring.application.name" />
+
+	<property name="LOG_FILE" value="${BUILD_FOLDER:-build}/${springAppName}" />
+
+	<property name="CONSOLE_LOG_PATTERN"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%anm] [%rno] %clr([%X{X-B3-TraceId:--},%X{X-B3-SpanId:--},%X{X-B3-ParentSpanId:--}]){yellow} [%-5level] [%c{10}][%t]%L -> %m%n" />
+	<property name="IDER_LOG_PATTERN"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%anm] [%rno] [%rip] %clr([%X{X-B3-TraceId:--},%X{X-B3-SpanId:--},%X{X-B3-ParentSpanId:--}]){yellow} [%-5level] [%c{10}][%t]%L -> %m%n" />
+
+	<!-- Appender to log to console -->
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<!-- Minimum logging level to be presented in the console logs -->
+			<level>DEBUG</level>
+		</filter>
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- <appender name="KafkaIder"
+		class="com.tansun.framework.extAppender.KafkaIderAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${IDER_LOG_PATTERN}</pattern>
+			<charset>utf8</charset>
+		</encoder>
+	</appender> -->
+	<appender name ="Async" class= "ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold >0</discardingThreshold>
+		<queueSize>512</queueSize>
+		<appender-ref ref ="Console"/>
+	</appender>
+	<Logger name="com.tansun" level="debug" additivity="false">
+		<appender-ref ref="Async" />
+		<!-- <appender-ref ref="KafkaIder" /> -->
+	</Logger>
+
+	<root level="INFO">
+		<appender-ref ref="Async" />
+		<!--<appender-ref ref="logstash"/> -->
+		<!--<appender-ref ref="flatfile"/> -->
+	</root>
+
+</configuration>

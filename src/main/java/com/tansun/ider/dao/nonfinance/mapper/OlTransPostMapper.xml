@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.ider.dao.nonfinance.mapper.OlTransPostMapper" >
+    <resultMap id="BaseResultMap" type="com.tansun.ider.model.vo.X5965VO" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="customer_no" property="customerNo" jdbcType="VARCHAR" />
+        <result column="processing_date" property="processingDate" jdbcType="VARCHAR" />
+        <result column="processing_time" property="processingTime" jdbcType="VARCHAR" />
+        <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+        <result column="currency_code" property="currencyCode" jdbcType="VARCHAR" />
+        <result column="event_no" property="eventNo" jdbcType="VARCHAR" />
+        <result column="external_identification_no" property="externalIdentificationNo" jdbcType="VARCHAR" />
+        <result column="trans_date" property="transDate" jdbcType="VARCHAR" />
+        <result column="trans_time" property="transTime" jdbcType="VARCHAR" />
+        <result column="trans_curr_decimal" property="transCurrDecimal" jdbcType="INTEGER" />
+        <result column="trans_curr_code" property="transCurrCode" jdbcType="VARCHAR" />
+        <result column="trans_amount" property="transAmount" jdbcType="DECIMAL" />
+        <result column="trans_desc" property="transDesc" jdbcType="VARCHAR" />
+        <result column="business_type_code" property="businessTypeCode" jdbcType="VARCHAR" />
+        <result column="operation_mode" property="operationMode" jdbcType="CHAR" />
+        <result column="curr_deciaml" property="currDeciaml" jdbcType="INTEGER" />
+        <result column="curr_principal_balance" property="currPrincipalBalance" jdbcType="DECIMAL" />
+        <result column="bill_principal_balance" property="billPrincipalBalance" jdbcType="DECIMAL" />
+        <result column="curr_interest_balance" property="currInterestBalance" jdbcType="DECIMAL" />
+        <result column="bill_interest_balance" property="billInterestBalance" jdbcType="DECIMAL" />
+        <result column="curr_cost_balance" property="currCostBalance" jdbcType="DECIMAL" />
+        <result column="bill_cost_balance" property="billCostBalance" jdbcType="DECIMAL" />
+        <result column="posting_curr_decimal" property="postingCurrDecimal" jdbcType="INTEGER" />
+        <result column="posting_curr_code" property="postingCurrCode" jdbcType="VARCHAR" />
+        <result column="posting_amt" property="postingAmt" jdbcType="DECIMAL" />
+        <result column="posting_exchange_rate" property="postingExchangeRate" jdbcType="DECIMAL" />
+        <result column="clear_curr_decimal" property="clearCurrDecimal" jdbcType="INTEGER" />
+        <result column="clear_curr_code" property="clearCurrCode" jdbcType="VARCHAR" />
+        <result column="clear_amount" property="clearAmount" jdbcType="DECIMAL" />
+        <result column="auth_code" property="authCode" jdbcType="CHAR" />
+        <result column="mcc" property="mcc" jdbcType="VARCHAR" />
+        <result column="trans_country_cde" property="transCountryCde" jdbcType="VARCHAR" />
+        <result column="trans_city_cde" property="transCityCde" jdbcType="VARCHAR" />
+        <result column="source_cde" property="sourceCde" jdbcType="VARCHAR" />
+        <result column="acquire_reference_numbr" property="acquireReferenceNumbr" jdbcType="VARCHAR" />
+        <result column="channel_cde" property="channelCde" jdbcType="VARCHAR" />
+        <result column="merchant_cde" property="merchantCde" jdbcType="VARCHAR" />
+        <result column="global_trans_serial_no" property="globalTransSerialNo" jdbcType="VARCHAR" />
+        <result column="ori_global_trans_serial_no" property="oriGlobalTransSerialNo" jdbcType="VARCHAR" />
+        <result column="trans_billing_state" property="transBillingState" jdbcType="CHAR" />
+        <result column="posting_date" property="postingDate" jdbcType="VARCHAR" />
+        <result column="posting_time" property="postingTime" jdbcType="VARCHAR" />
+        <result column="posting_retry_num" property="postingRetryNum" jdbcType="INTEGER" />
+        <result column="posting_retry_interval" property="postingRetryInterval" jdbcType="INTEGER" />
+        <result column="settle_distri_amount" property="settleDistriAmount" jdbcType="DECIMAL" />
+        <result column="settle_distri_currency" property="settleDistriCurrency" jdbcType="CHAR" />
+        <result column="settle_distri_curr_point" property="settleDistriCurrPoint" jdbcType="INTEGER" />
+        <result column="overpay_frz_amount" property="overpayFrzAmount" jdbcType="DECIMAL" />
+        <result column="overpay_frz_curr_code" property="overpayFrzCurrCode" jdbcType="CHAR" />
+        <result column="overpay_frz_curr_point" property="overpayFrzCurrPoint" jdbcType="INTEGER" />
+        <result column="overpay_amount" property="overpayAmount" jdbcType="DECIMAL" />
+        <result column="overpay_curr_code" property="overpayCurrCode" jdbcType="CHAR" />
+        <result column="product_object_code" property="productObjectCode" jdbcType="VARCHAR" />
+        <result column="installment_num" property="installmentNum" jdbcType="INTEGER" />
+        <result column="business_program_no" property="businessProgramNo" jdbcType="VARCHAR" />
+        <result column="trans_process_flag" property="transProcessFlag" jdbcType="CHAR" />
+        <result column="ori_trans_posting_account_id" property="oriTransPostingAccountId" jdbcType="VARCHAR" />
+        <result column="ori_trans_posting_curr_code" property="oriTransPostingCurrCode" jdbcType="CHAR" />
+        <result column="preorder_source" property="preorderSource" jdbcType="CHAR" />
+        <result column="product_form" property="productForm" jdbcType="VARCHAR" />
+        <result column="ori_trans_date" property="oriTransDate" jdbcType="VARCHAR" />
+        <result column="debit_credit_flag" property="debitCreditFlag" jdbcType="CHAR" />
+        <result column="trans_identifi_no" property="transIdentifiNo" jdbcType="CHAR" />
+        <result column="balance_type" property="balanceType" jdbcType="CHAR" />
+        <result column="installment_period" property="installmentPeriod" jdbcType="INTEGER" />
+        <result column="loan_para" property="loanPara" jdbcType="VARCHAR" />
+        <result column="penalty_interest_rate" property="penaltyInterestRate" jdbcType="DECIMAL" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="VARCHAR" />
+        <result column="time_stamp" property="timeStamp" jdbcType="TIMESTAMP" />
+        <result column="version" property="version" jdbcType="INTEGER" />
+        <result column="trans_source" property="transSource" jdbcType="CHAR" />
+        <result column="ori_posting_amt" property="oriPostingAmt" jdbcType="DECIMAL" />
+        <result column="fee_collect_type" property="feeCollectType" jdbcType="CHAR" />
+    </resultMap>
+    
+      <sql id="SqlBuilder_Paging_Tail" >
+        <if test="pageSize > 0" >
+            <if test="indexNo > 0" >
+                limit #{indexNo} , #{pageSize}
+            </if>
+            <if test="indexNo == 0" >
+                limit #{pageSize}
+            </if>
+        </if>
+    </sql>
+        <select id="selectOlTransPosts" resultMap="BaseResultMap" parameterType="com.tansun.ider.model.bo.X5965BO">
+		   SELECT o.* FROM 
+				(
+				SELECT c.* FROM core_ol_trans_post_log c
+				UNION ALL
+				SELECT b.* FROM core_ol_trans_post_log_b b
+				) o
+			WHERE 1=1
+		    <if test="customerNo != null" >
+                AND o.customer_no = #{customerNo}
+            </if>
+            <if test="transBillingState != null" >
+                AND o.trans_billing_state = #{transBillingState}
+            </if>
+		    <if test="externalIdentificationNo != null" >
+                AND o.external_identification_no = #{externalIdentificationNo} 
+            </if>
+            <if test="startDate != null" >
+                AND o.trans_date <![CDATA[ >= ]]> #{startDate}
+            </if>
+            <if test="endDate != null" >
+                AND o.trans_date <![CDATA[ <= ]]> #{endDate}
+            </if>
+			ORDER BY o.trans_date,o.trans_time
+			<include refid="SqlBuilder_Paging_Tail" />
+    </select>
+    <select id="selectOlTransPostConut" parameterType="com.tansun.ider.model.bo.X5965BO" resultType="java.lang.Integer" >
+            SELECT COUNT(*) FROM 
+                (
+                SELECT c.* FROM core_ol_trans_post_log c
+                UNION ALL
+                SELECT b.* FROM core_ol_trans_post_log_b b
+                ) o
+            WHERE 1=1
+			<if test="customerNo != null" >
+                AND o.customer_no = #{customerNo}
+            </if>
+            <if test="transBillingState != null" >
+                AND o.trans_billing_state = #{transBillingState}
+            </if>
+            <if test="externalIdentificationNo != null" >
+                AND o.external_identification_no = #{externalIdentificationNo}
+            </if>
+            <if test="startDate != null" >
+                AND o.trans_date <![CDATA[ >= ]]> #{startDate}
+            </if>
+            <if test="endDate != null" >
+                AND o.trans_date <![CDATA[ <= ]]> #{endDate}
+            </if>
+    </select>
+</mapper>

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace='com.tansun.ider.dao.nonfinance.mapper.AccountBalanceCheckMapper' >
+    <resultMap id='BaseResultMap' type='com.tansun.ider.dao.issue.entity.CoreAccountBalanceCheck' >
+        <id column='id' property='id' jdbcType='VARCHAR' />
+        <result column='account_id_auth' property='accountIdAuth' jdbcType='VARCHAR' />
+        <result column='account_id_card' property='accountIdCard' jdbcType='VARCHAR' />
+        <result column='currency_code' property='currencyCode' jdbcType='VARCHAR' />
+        <result column='business_program_no' property='businessProgramNo' jdbcType='VARCHAR' />
+        <result column='product_object_code' property='productObjectCode' jdbcType='VARCHAR' />
+        <result column='business_type_code' property='businessTypeCode' jdbcType='VARCHAR' />
+        <result column='customer_no' property='customerNo' jdbcType='VARCHAR' />
+        <result column='trans_identifi_no' property='transIdentifiNo' jdbcType='VARCHAR' />
+        <result column='bill_principal_bal_card' property='billPrincipalBalCard' jdbcType='DECIMAL' />
+        <result column='bill_principal_bal_auth' property='billPrincipalBalAuth' jdbcType='DECIMAL' />
+        <result column='bill_cost_bal_card' property='billCostBalCard' jdbcType='DECIMAL' />
+        <result column='bill_cost_bal_auth' property='billCostBalAuth' jdbcType='DECIMAL' />
+        <result column='bill_interest_bal_card' property='billInterestBalCard' jdbcType='DECIMAL' />
+        <result column='bill_interest_bal_auth' property='billInterestBalAuth' jdbcType='DECIMAL' />
+        <result column='curr_principal_bal_card' property='currPrincipalBalCard' jdbcType='DECIMAL' />
+        <result column='curr_principal_bal_auth' property='currPrincipalBalAuth' jdbcType='DECIMAL' />
+        <result column='curr_cost_bal_card' property='currCostBalCard' jdbcType='DECIMAL' />
+        <result column='curr_cost_bal_auth' property='currCostBalAuth' jdbcType='DECIMAL' />
+        <result column='curr_interest_bal_card' property='currInterestBalCard' jdbcType='DECIMAL' />
+        <result column='curr_interest_bal_auth' property='currInterestBalAuth' jdbcType='DECIMAL' />
+        <result column='gmt_create' property='gmtCreate' jdbcType='VARCHAR' />
+        <result column='time_stamp' property='timeStamp' jdbcType='TIMESTAMP' />
+        <result column='version' property='version' jdbcType='INTEGER' />
+    </resultMap>
+    <resultMap id='ResultMapWithBLOBs' type='com.tansun.ider.dao.issue.entity.CoreAccountBalanceCheck' extends='BaseResultMap' />
+    <sql id='Base_Column_List' >
+        id, account_id_auth, account_id_card, currency_code, business_program_no, product_object_code, 
+        business_type_code, customer_no, trans_identifi_no, bill_principal_bal_card, bill_principal_bal_auth, 
+        bill_cost_bal_card, bill_cost_bal_auth, bill_interest_bal_card, bill_interest_bal_auth, 
+        curr_principal_bal_card, curr_principal_bal_auth, curr_cost_bal_card, curr_cost_bal_auth, 
+        curr_interest_bal_card, curr_interest_bal_auth, gmt_create, time_stamp, version
+    </sql>
+    <sql id='Blob_Column_List' >
+        <include refid='Base_Column_List' />
+    </sql>
+    <sql id='SqlBuilder_Paging_Tail' >
+        <if test='pageSize > 0' >
+            <if test='indexNo > 0' >
+                limit #{indexNo} , #{pageSize}
+            </if>
+        </if>
+    </sql>
+    <sql id='SqlBuilder_LinkMode' >
+        <choose >
+            <when test='itemLoop.ao == "AND" ' >
+                 AND 
+            </when>
+            <otherwise >
+                 OR 
+            </otherwise>
+        </choose>
+    </sql>
+    <sql id='SqlBuilder_Columns' >
+        <choose >
+            <when test='itemLoop.var == "id" ' >id</when>
+            <when test='itemLoop.var == "account_id_auth" ' >account_id_auth</when>
+            <when test='itemLoop.var == "account_id_card" ' >account_id_card</when>
+            <when test='itemLoop.var == "currency_code" ' >currency_code</when>
+            <when test='itemLoop.var == "business_program_no" ' >business_program_no</when>
+            <when test='itemLoop.var == "product_object_code" ' >product_object_code</when>
+            <when test='itemLoop.var == "business_type_code" ' >business_type_code</when>
+            <when test='itemLoop.var == "customer_no" ' >customer_no</when>
+            <when test='itemLoop.var == "trans_identifi_no" ' >trans_identifi_no</when>
+            <when test='itemLoop.var == "bill_principal_bal_card" ' >bill_principal_bal_card</when>
+            <when test='itemLoop.var == "bill_principal_bal_auth" ' >bill_principal_bal_auth</when>
+            <when test='itemLoop.var == "bill_cost_bal_card" ' >bill_cost_bal_card</when>
+            <when test='itemLoop.var == "bill_cost_bal_auth" ' >bill_cost_bal_auth</when>
+            <when test='itemLoop.var == "bill_interest_bal_card" ' >bill_interest_bal_card</when>
+            <when test='itemLoop.var == "bill_interest_bal_auth" ' >bill_interest_bal_auth</when>
+            <when test='itemLoop.var == "curr_principal_bal_card" ' >curr_principal_bal_card</when>
+            <when test='itemLoop.var == "curr_principal_bal_auth" ' >curr_principal_bal_auth</when>
+            <when test='itemLoop.var == "curr_cost_bal_card" ' >curr_cost_bal_card</when>
+            <when test='itemLoop.var == "curr_cost_bal_auth" ' >curr_cost_bal_auth</when>
+            <when test='itemLoop.var == "curr_interest_bal_card" ' >curr_interest_bal_card</when>
+            <when test='itemLoop.var == "curr_interest_bal_auth" ' >curr_interest_bal_auth</when>
+            <when test='itemLoop.var == "gmt_create" ' >gmt_create</when>
+            <when test='itemLoop.var == "time_stamp" ' >time_stamp</when>
+            <when test='itemLoop.var == "version" ' >version</when>
+            <otherwise />
+        </choose>
+    </sql>
+    <sql id='SqlBuilder_OperSym' >
+        <choose >
+            <when test='itemLoop.oper == "0" ' > = </when>
+            <when test='itemLoop.oper == "1" ' ><![CDATA[ <> ]]></when>
+            <when test='itemLoop.oper == "2" ' > > </when>
+            <when test='itemLoop.oper == "3" ' > >= </when>
+            <when test='itemLoop.oper == "4" ' ><![CDATA[ < ]]></when>
+            <when test='itemLoop.oper == "5" ' ><![CDATA[ <= ]]></when>
+            <when test='itemLoop.oper == "6" ' > IS NULL </when>
+            <when test='itemLoop.oper == "7" ' > IS NOT NULL </when>
+            <when test='itemLoop.oper == "8" ' > LIKE </when>
+            <when test='itemLoop.oper == "9" ' > NOT LIKE </when>
+            <otherwise />
+        </choose>
+    </sql>
+    <sql id='SqlBuilder_Where_Case' >
+        <foreach collection='whereList' item='item' index='index' >
+            <bind name='itemLoop' value='item' />
+            <include refid='SqlBuilder_LinkMode' />
+            <choose >
+                <when test='item.lists != null ' >
+                    <trim prefix='(' suffix=')' prefixOverrides='AND|OR' >
+                        <foreach collection='item.lists' item='item1' index='index' >
+                            <bind name='itemLoop' value='item1' />
+                            <include refid='SqlBuilder_LinkMode' />
+                            <choose >
+                                <when test='item1.lists != null ' >
+                                    <trim prefix='(' suffix=')' prefixOverrides='AND|OR' >
+                                        <foreach collection='item1.lists' item='item2' index='index' >
+                                            <bind name='itemLoop' value='item2' />
+                                            <include refid='SqlBuilder_LinkMode' />
+                                            <choose >
+                                                <when test='item2.lists != null ' >
+                                                    <trim prefix='(' suffix=')' prefixOverrides='AND|OR' >
+                                                        <foreach collection='item2.lists' item='item3' index='index' >
+                                                            <bind name='itemLoop' value='item3' />
+                                                            <include refid='SqlBuilder_LinkMode' />
+                                                            <include refid='SqlBuilder_Columns' />
+                                                            <include refid='SqlBuilder_OperSym' />
+                                                            <if test='item3.val != null ' >
+                                                                 #{item3.val } 
+                                                            </if>
+                                                        </foreach>
+                                                    </trim>
+                                                </when>
+                                                <otherwise >
+                                                    <include refid='SqlBuilder_Columns' />
+                                                    <include refid='SqlBuilder_OperSym' />
+                                                    <if test='item2.val != null ' >
+                                                         #{item2.val } 
+                                                    </if>
+                                                </otherwise>
+                                            </choose>
+                                        </foreach>
+                                    </trim>
+                                </when>
+                                <otherwise >
+                                    <include refid='SqlBuilder_Columns' />
+                                    <include refid='SqlBuilder_OperSym' />
+                                    <if test='item1.val != null ' >
+                                         #{item1.val } 
+                                    </if>
+                                </otherwise>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </when>
+                <otherwise >
+                    <include refid='SqlBuilder_Columns' />
+                    <include refid='SqlBuilder_OperSym' />
+                    <if test='item.val != null ' >
+                         #{item.val } 
+                    </if>
+                </otherwise>
+            </choose>
+        </foreach>
+    </sql>
+    <sql id='SqlBuilder_OrderBy_Case' >
+        <foreach collection='orderList' index='index' item='item' separator=',' open=' order by ' >
+            <bind name='itemLoop' value='item' />
+            <include refid='SqlBuilder_Columns' />
+            <choose >
+                <when test='item.val != null' >
+                     DESC 
+                </when>
+                <otherwise >
+                     ASC 
+                </otherwise>
+            </choose>
+        </foreach>
+    </sql>
+    <sql id='KeyBean_Where_Case' >
+        id = #{id, jdbcType=VARCHAR}
+    </sql>
+    <sql id='SqlBuilder_Update' >
+        <set >
+            account_id_auth = #{updateObject.accountIdAuth, jdbcType=VARCHAR}, account_id_card = #{updateObject.accountIdCard, jdbcType=VARCHAR}, 
+            currency_code = #{updateObject.currencyCode, jdbcType=VARCHAR}, business_program_no = #{updateObject.businessProgramNo, jdbcType=VARCHAR}, 
+            product_object_code = #{updateObject.productObjectCode, jdbcType=VARCHAR}, business_type_code = #{updateObject.businessTypeCode, jdbcType=VARCHAR}, 
+            customer_no = #{updateObject.customerNo, jdbcType=VARCHAR}, trans_identifi_no = #{updateObject.transIdentifiNo, jdbcType=VARCHAR}, 
+            bill_principal_bal_card = #{updateObject.billPrincipalBalCard, jdbcType=DECIMAL}, 
+            bill_principal_bal_auth = #{updateObject.billPrincipalBalAuth, jdbcType=DECIMAL}, 
+            bill_cost_bal_card = #{updateObject.billCostBalCard, jdbcType=DECIMAL}, bill_cost_bal_auth = #{updateObject.billCostBalAuth, jdbcType=DECIMAL}, 
+            bill_interest_bal_card = #{updateObject.billInterestBalCard, jdbcType=DECIMAL}, bill_interest_bal_auth = #{updateObject.billInterestBalAuth, jdbcType=DECIMAL}, 
+            curr_principal_bal_card = #{updateObject.currPrincipalBalCard, jdbcType=DECIMAL}, 
+            curr_principal_bal_auth = #{updateObject.currPrincipalBalAuth, jdbcType=DECIMAL}, 
+            curr_cost_bal_card = #{updateObject.currCostBalCard, jdbcType=DECIMAL}, curr_cost_bal_auth = #{updateObject.currCostBalAuth, jdbcType=DECIMAL}, 
+            curr_interest_bal_card = #{updateObject.currInterestBalCard, jdbcType=DECIMAL}, curr_interest_bal_auth = #{updateObject.currInterestBalAuth, jdbcType=DECIMAL}, 
+            gmt_create = #{updateObject.gmtCreate, jdbcType=VARCHAR}, version = #{updateObject.version, jdbcType=INTEGER}
+        </set>
+    </sql>
+    <sql id='SqlBuilder_Update_Selective' >
+        <set >
+            <if test='updateObject.accountIdAuth != null' >
+                account_id_auth = #{updateObject.accountIdAuth, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.accountIdCard != null' >
+                account_id_card = #{updateObject.accountIdCard, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.currencyCode != null' >
+                currency_code = #{updateObject.currencyCode, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.businessProgramNo != null' >
+                business_program_no = #{updateObject.businessProgramNo, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.productObjectCode != null' >
+                product_object_code = #{updateObject.productObjectCode, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.businessTypeCode != null' >
+                business_type_code = #{updateObject.businessTypeCode, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.customerNo != null' >
+                customer_no = #{updateObject.customerNo, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.transIdentifiNo != null' >
+                trans_identifi_no = #{updateObject.transIdentifiNo, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.billPrincipalBalCard != null' >
+                bill_principal_bal_card = #{updateObject.billPrincipalBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.billPrincipalBalAuth != null' >
+                bill_principal_bal_auth = #{updateObject.billPrincipalBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.billCostBalCard != null' >
+                bill_cost_bal_card = #{updateObject.billCostBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.billCostBalAuth != null' >
+                bill_cost_bal_auth = #{updateObject.billCostBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.billInterestBalCard != null' >
+                bill_interest_bal_card = #{updateObject.billInterestBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.billInterestBalAuth != null' >
+                bill_interest_bal_auth = #{updateObject.billInterestBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.currPrincipalBalCard != null' >
+                curr_principal_bal_card = #{updateObject.currPrincipalBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.currPrincipalBalAuth != null' >
+                curr_principal_bal_auth = #{updateObject.currPrincipalBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.currCostBalCard != null' >
+                curr_cost_bal_card = #{updateObject.currCostBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.currCostBalAuth != null' >
+                curr_cost_bal_auth = #{updateObject.currCostBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.currInterestBalCard != null' >
+                curr_interest_bal_card = #{updateObject.currInterestBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.currInterestBalAuth != null' >
+                curr_interest_bal_auth = #{updateObject.currInterestBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='updateObject.gmtCreate != null' >
+                gmt_create = #{updateObject.gmtCreate, jdbcType=VARCHAR}, 
+            </if>
+            <if test='updateObject.version != null' >
+                version = #{updateObject.version, jdbcType=INTEGER}, 
+            </if>
+        </set>
+    </sql>
+    <sql id='Bean_Update' >
+        <set >
+            account_id_auth = #{accountIdAuth, jdbcType=VARCHAR}, account_id_card = #{accountIdCard, jdbcType=VARCHAR}, 
+            currency_code = #{currencyCode, jdbcType=VARCHAR}, business_program_no = #{businessProgramNo, jdbcType=VARCHAR}, 
+            product_object_code = #{productObjectCode, jdbcType=VARCHAR}, business_type_code = #{businessTypeCode, jdbcType=VARCHAR}, 
+            customer_no = #{customerNo, jdbcType=VARCHAR}, trans_identifi_no = #{transIdentifiNo, jdbcType=VARCHAR}, 
+            bill_principal_bal_card = #{billPrincipalBalCard, jdbcType=DECIMAL}, bill_principal_bal_auth = #{billPrincipalBalAuth, jdbcType=DECIMAL}, 
+            bill_cost_bal_card = #{billCostBalCard, jdbcType=DECIMAL}, bill_cost_bal_auth = #{billCostBalAuth, jdbcType=DECIMAL}, 
+            bill_interest_bal_card = #{billInterestBalCard, jdbcType=DECIMAL}, bill_interest_bal_auth = #{billInterestBalAuth, jdbcType=DECIMAL}, 
+            curr_principal_bal_card = #{currPrincipalBalCard, jdbcType=DECIMAL}, curr_principal_bal_auth = #{currPrincipalBalAuth, jdbcType=DECIMAL}, 
+            curr_cost_bal_card = #{currCostBalCard, jdbcType=DECIMAL}, curr_cost_bal_auth = #{currCostBalAuth, jdbcType=DECIMAL}, 
+            curr_interest_bal_card = #{currInterestBalCard, jdbcType=DECIMAL}, curr_interest_bal_auth = #{currInterestBalAuth, jdbcType=DECIMAL}, 
+            gmt_create = #{gmtCreate, jdbcType=VARCHAR}, version = #{version, jdbcType=INTEGER}
+        </set>
+    </sql>
+    <sql id='Bean_Update_Selective' >
+        <set >
+            <if test='accountIdAuth != null' >
+                account_id_auth = #{accountIdAuth, jdbcType=VARCHAR}, 
+            </if>
+            <if test='accountIdCard != null' >
+                account_id_card = #{accountIdCard, jdbcType=VARCHAR}, 
+            </if>
+            <if test='currencyCode != null' >
+                currency_code = #{currencyCode, jdbcType=VARCHAR}, 
+            </if>
+            <if test='businessProgramNo != null' >
+                business_program_no = #{businessProgramNo, jdbcType=VARCHAR}, 
+            </if>
+            <if test='productObjectCode != null' >
+                product_object_code = #{productObjectCode, jdbcType=VARCHAR}, 
+            </if>
+            <if test='businessTypeCode != null' >
+                business_type_code = #{businessTypeCode, jdbcType=VARCHAR}, 
+            </if>
+            <if test='customerNo != null' >
+                customer_no = #{customerNo, jdbcType=VARCHAR}, 
+            </if>
+            <if test='transIdentifiNo != null' >
+                trans_identifi_no = #{transIdentifiNo, jdbcType=VARCHAR}, 
+            </if>
+            <if test='billPrincipalBalCard != null' >
+                bill_principal_bal_card = #{billPrincipalBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='billPrincipalBalAuth != null' >
+                bill_principal_bal_auth = #{billPrincipalBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='billCostBalCard != null' >
+                bill_cost_bal_card = #{billCostBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='billCostBalAuth != null' >
+                bill_cost_bal_auth = #{billCostBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='billInterestBalCard != null' >
+                bill_interest_bal_card = #{billInterestBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='billInterestBalAuth != null' >
+                bill_interest_bal_auth = #{billInterestBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='currPrincipalBalCard != null' >
+                curr_principal_bal_card = #{currPrincipalBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='currPrincipalBalAuth != null' >
+                curr_principal_bal_auth = #{currPrincipalBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='currCostBalCard != null' >
+                curr_cost_bal_card = #{currCostBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='currCostBalAuth != null' >
+                curr_cost_bal_auth = #{currCostBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='currInterestBalCard != null' >
+                curr_interest_bal_card = #{currInterestBalCard, jdbcType=DECIMAL}, 
+            </if>
+            <if test='currInterestBalAuth != null' >
+                curr_interest_bal_auth = #{currInterestBalAuth, jdbcType=DECIMAL}, 
+            </if>
+            <if test='gmtCreate != null' >
+                gmt_create = #{gmtCreate, jdbcType=VARCHAR}, 
+            </if>
+            <if test='version != null' >
+                version = #{version, jdbcType=INTEGER}, 
+            </if>
+        </set>
+    </sql>
+    <select id='selectBySqlBuilderWithBLOBs' resultMap='ResultMapWithBLOBs' parameterType='com.tansun.ider.dao.issue.sqlbuilder.CoreAccountBalanceCheckSqlBuilder' >
+        select
+        <if test='distinct' >
+            distinct
+        </if>
+        <include refid='Blob_Column_List' />
+        from core_account_balance_check
+        <where >
+            <include refid='SqlBuilder_Where_Case' />
+        </where>
+        <include refid='SqlBuilder_OrderBy_Case' />
+        <include refid='SqlBuilder_Paging_Tail' />
+    </select>
+    <select id='selectBySqlBuilder' resultMap='BaseResultMap' parameterType='com.tansun.ider.dao.issue.sqlbuilder.CoreAccountBalanceCheckSqlBuilder' >
+        select
+        <if test='distinct' >
+            distinct
+        </if>
+        <include refid='Base_Column_List' />
+        from core_account_balance_check
+        <where >
+            <include refid='SqlBuilder_Where_Case' />
+        </where>
+        <include refid='SqlBuilder_OrderBy_Case' />
+        <include refid='SqlBuilder_Paging_Tail' />
+    </select>
+    <select id='selectByPrimaryKey' resultMap='ResultMapWithBLOBs' parameterType='com.tansun.ider.dao.issue.entity.CoreAccountBalanceCheckKey' >
+        select 
+        <include refid='Base_Column_List' />
+        from core_account_balance_check
+        <where >
+            <include refid='KeyBean_Where_Case' />
+        </where>
+    </select>
+    <select id='countBySqlBuilder' parameterType='com.tansun.ider.dao.issue.sqlbuilder.CoreAccountBalanceCheckSqlBuilder' resultType='java.lang.Integer' >
+        select count(*) from core_account_balance_check
+        <where >
+            <include refid='SqlBuilder_Where_Case' />
+        </where>
+    </select>
+    <insert id='insert' parameterType='com.tansun.ider.dao.issue.entity.CoreAccountBalanceCheck' flushCache='true' >
+        insert into core_account_balance_check (id, account_id_auth, account_id_card, 
+            currency_code, business_program_no, product_object_code, 
+            business_type_code, customer_no, trans_identifi_no, 
+            bill_principal_bal_card, bill_principal_bal_auth, 
+            bill_cost_bal_card, bill_cost_bal_auth, bill_interest_bal_card, 
+            bill_interest_bal_auth, curr_principal_bal_card, 
+            curr_principal_bal_auth, curr_cost_bal_card, 
+            curr_cost_bal_auth, curr_interest_bal_card, 
+            curr_interest_bal_auth, gmt_create, version
+            )
+        values (#{id, jdbcType=VARCHAR}, #{accountIdAuth, jdbcType=VARCHAR}, #{accountIdCard, jdbcType=VARCHAR}, 
+            #{currencyCode, jdbcType=VARCHAR}, #{businessProgramNo, jdbcType=VARCHAR}, #{productObjectCode, jdbcType=VARCHAR}, 
+            #{businessTypeCode, jdbcType=VARCHAR}, #{customerNo, jdbcType=VARCHAR}, #{transIdentifiNo, jdbcType=VARCHAR}, 
+            #{billPrincipalBalCard, jdbcType=DECIMAL}, #{billPrincipalBalAuth, jdbcType=DECIMAL}, 
+            #{billCostBalCard, jdbcType=DECIMAL}, #{billCostBalAuth, jdbcType=DECIMAL}, #{billInterestBalCard, jdbcType=DECIMAL}, 
+            #{billInterestBalAuth, jdbcType=DECIMAL}, #{currPrincipalBalCard, jdbcType=DECIMAL}, 
+            #{currPrincipalBalAuth, jdbcType=DECIMAL}, #{currCostBalCard, jdbcType=DECIMAL}, 
+            #{currCostBalAuth, jdbcType=DECIMAL}, #{currInterestBalCard, jdbcType=DECIMAL}, 
+            #{currInterestBalAuth, jdbcType=DECIMAL}, #{gmtCreate, jdbcType=VARCHAR}, #{version, jdbcType=INTEGER}
+            )
+    </insert>
+    <insert id='insertUseBatch' parameterType='java.util.List' flushCache='true' >
+        insert into core_account_balance_check (id, account_id_auth, account_id_card, 
+            currency_code, business_program_no, 
+            product_object_code, business_type_code, 
+            customer_no, trans_identifi_no, 
+            bill_principal_bal_card, bill_principal_bal_auth, 
+            bill_cost_bal_card, bill_cost_bal_auth, 
+            bill_interest_bal_card, bill_interest_bal_auth, 
+            curr_principal_bal_card, curr_principal_bal_auth, 
+            curr_cost_bal_card, curr_cost_bal_auth, 
+            curr_interest_bal_card, curr_interest_bal_auth, 
+            gmt_create, version)
+         values 
+        <foreach collection='list' index='index' item='item' separator=' , ' >
+            ( 
+            #{item.id, jdbcType=VARCHAR}, #{item.accountIdAuth, jdbcType=VARCHAR}, #{item.accountIdCard, jdbcType=VARCHAR},     
+            #{item.currencyCode, jdbcType=VARCHAR}, #{item.businessProgramNo, jdbcType=VARCHAR},     
+            #{item.productObjectCode, jdbcType=VARCHAR}, #{item.businessTypeCode, jdbcType=VARCHAR},     
+            #{item.customerNo, jdbcType=VARCHAR}, #{item.transIdentifiNo, jdbcType=VARCHAR},     
+            #{item.billPrincipalBalCard, jdbcType=DECIMAL}, #{item.billPrincipalBalAuth, jdbcType=DECIMAL},     
+            #{item.billCostBalCard, jdbcType=DECIMAL}, #{item.billCostBalAuth, jdbcType=DECIMAL},     
+            #{item.billInterestBalCard, jdbcType=DECIMAL}, #{item.billInterestBalAuth, jdbcType=DECIMAL},     
+            #{item.currPrincipalBalCard, jdbcType=DECIMAL}, #{item.currPrincipalBalAuth, jdbcType=DECIMAL},     
+            #{item.currCostBalCard, jdbcType=DECIMAL}, #{item.currCostBalAuth, jdbcType=DECIMAL},     
+            #{item.currInterestBalCard, jdbcType=DECIMAL}, #{item.currInterestBalAuth, jdbcType=DECIMAL},     
+            #{item.gmtCreate, jdbcType=VARCHAR}, #{item.version, jdbcType=INTEGER}
+            ) 
+        </foreach>
+    </insert>
+    <update id='updateBySqlBuilder' parameterType='com.tansun.ider.dao.issue.sqlbuilder.CoreAccountBalanceCheckSqlBuilder' flushCache='true' >
+        update core_account_balance_check
+        <include refid='SqlBuilder_Update' />
+        <where >
+            <include refid='SqlBuilder_Where_Case' />
+        </where>
+    </update>
+    <update id='updateBySqlBuilderSelective' parameterType='com.tansun.ider.dao.issue.sqlbuilder.CoreAccountBalanceCheckSqlBuilder' flushCache='true' >
+        update core_account_balance_check
+        <include refid='SqlBuilder_Update_Selective' />
+        <where >
+            <include refid='SqlBuilder_Where_Case' />
+        </where>
+    </update>
+    <update id='updateByPrimaryKey' parameterType='com.tansun.ider.dao.issue.entity.CoreAccountBalanceCheckKey' flushCache='true' >
+        update core_account_balance_check
+        <include refid='Bean_Update' />
+        <where >
+            <include refid='KeyBean_Where_Case' />
+        </where>
+    </update>
+    <update id='updateByPrimaryKeySelective' parameterType='com.tansun.ider.dao.issue.entity.CoreAccountBalanceCheckKey' flushCache='true' >
+        update core_account_balance_check
+        <include refid='Bean_Update_Selective' />
+        <where >
+            <include refid='KeyBean_Where_Case' />
+        </where>
+    </update>
+    <delete id='deleteBySqlBuilder' parameterType='com.tansun.ider.dao.issue.sqlbuilder.CoreAccountBalanceCheckSqlBuilder' flushCache='true' >
+        delete from core_account_balance_check
+        <where >
+            <include refid='SqlBuilder_Where_Case' />
+        </where>
+    </delete>
+    <delete id='deleteByPrimaryKey' parameterType='com.tansun.ider.dao.issue.entity.CoreAccountBalanceCheckKey' flushCache='true' >
+        delete from core_account_balance_check
+        <where >
+            <include refid='KeyBean_Where_Case' />
+        </where>
+    </delete>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tansun.ider.dao.nonfinance.mapper.BillAmountMapper" >
+    <resultMap id="BaseResultMap" type="com.tansun.ider.model.vo.X5600VO" >
+        <result column="billAmt" property="billAmt" jdbcType="DECIMAL" />
+        <result column="customer_no" property="customerNo" jdbcType="VARCHAR" />
+        <result column="currency_code" property="currencyCode" jdbcType="VARCHAR" />
+        <result column="balance_object_code" property="balanceObjectCode" jdbcType="VARCHAR" />
+    </resultMap> 
+        <select id="selectSumAmt" resultMap="BaseResultMap" parameterType="com.tansun.ider.model.bo.X5600BO">
+			   	SELECT
+				u.balance as billAmt,
+				a.customer_no,
+				u. currency_code,
+				u.balance_object_code
+			   FROM core_balance_unit u 
+			<!--    inner join core_account_balance_object o on  u.account_id = o.account_id and u.currency_code = o.currency_code  
+			 AND o.balance_object_code = u.balance_object_code  -->
+			 inner join core_account a on a.account_id = u.account_id and u.currency_code = a.currency_code 
+			  WHERE 1=1 
+			 <!--  o.installment_flag = '1'  -->
+			<if test="customerNo!=null and customerNo!=''">
+		   		      AND a.customer_no = #{customerNo}
+		    </if>
+		    <if test="businessTypeCode!=null and businessTypeCode!=''">
+		   		      AND a.business_type_code = #{businessTypeCode}
+		    </if>
+		    <if test="firstBillingCycle!=null and firstBillingCycle!=''">
+					 <!--  AND u.first_billing_cycle <![CDATA[ <= ]]> #{firstBillingCycle} -->
+					 AND u.first_billing_cycle = #{firstBillingCycle}
+			</if>
+			 <if test="postingCurrencyCode!=null and postingCurrencyCode!=''">
+		   		      AND u.currency_code=#{postingCurrencyCode}
+		   		   </if>
+		   		   AND (a.sub_acc_identify = 'P' or a.sub_acc_identify = 'S')
+			 <!-- GROUP BY a.customer_no,u.currency_code -->
+    </select>
+</mapper>
